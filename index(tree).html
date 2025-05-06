@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Growing Tree</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f8ff;
+        }
+        #tree {
+            width: 200px;
+            height: 200px;
+            background-color: #8B4513;
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        #leaves {
+            position: absolute;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            background-color: #228B22;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to the Growing Tree!</h1>
+    <p>Every time you visit, the tree grows!</p>
+
+    <div id="tree"></div>
+    <div id="leaves"></div>
+
+    <script>
+        const leaves = document.getElementById('leaves');
+        let size = 0;
+        const growthRate = 20; // Growth per visit in px
+
+        // Check if the user has visited before using localStorage
+        if (localStorage.getItem('treeGrowth')) {
+            size = parseInt(localStorage.getItem('treeGrowth'));
+        }
+
+        // Increase tree size and update localStorage
+        size += growthRate;
+        localStorage.setItem('treeGrowth', size);
+
+        // Apply size to tree leaves
+        leaves.style.width = `${size}px`;
+        leaves.style.height = `${size}px`;
+    </script>
+</body>
+</html>
